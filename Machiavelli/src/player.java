@@ -42,6 +42,11 @@ public class player {
 		return returner;
 	}
 	
+	public int numCards()
+	{
+		return cardsInHand.size();
+	}
+	
 	public void sayCardsInHand()
 	{
 		System.out.println(this.cardsInHand());
