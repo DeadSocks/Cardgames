@@ -57,22 +57,16 @@ public class set {
 	
 	public boolean checkNumsSameAndUnique()//Assuming different suits, are they the same number and unique cards?
 	{
-		int num = this.cardsInSet.get(0).getValue();
+		int num = this.cardsInSet.get(0).getValue();//Get the number of the first card in the set
 		int[] numCounts;
-		numCounts = new int[13];
+		numCounts = new int[13];//Array of 13, to count the number of occurrences of each number
 		
-		for(card cardsToCheck:this.cardsInSet)
+		for(card cardsToCheck:this.cardsInSet)//For all cards in the set we're verifying
 		{
 			if(cardsToCheck.getValue() != num)
 					return false;//They aren't all the same number
 			
-			numCounts[cardsToCheck.getValue()+1]++;
-		}
-		//So, now we know they're all the same number. Are they unique?
-		for(int numCnts : numCounts)
-		{
-			if (numCnts != 0 && numCnts != this.cardsInSet.size())
-				return false;
+			numCounts[cardsToCheck.getValue()+1]++;//For each number, we also want to record here their number in our counter.
 		}
 		return true;
 	}
