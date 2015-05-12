@@ -38,28 +38,17 @@ public class game {
 		}
 		
 		//They all say their hands for some reason! Yay!
-		System.out.println(playersInGame.get(0).cardsInHand());
-		System.out.println(playersInGame.get(1).cardsInHand());
+		//System.out.println(playersInGame.get(0).cardsInHand());
+		//System.out.println(playersInGame.get(1).cardsInHand());
 		
 		
 		
 		///////////////////////////////////////
 		////////And now the game begins////////
 		///////////////////////////////////////
+		/*
 		while(!gameOver)//While the game is not over
 		{
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			for(int i=0;i < numberOfPlayers;i++)//checks if game is over.
 			{
 				if(playersInGame.get(i).numCards() == 0)
@@ -68,10 +57,21 @@ public class game {
 				}
 			}
 		}
-			
-
+			*/
 		
 		
+		
+		
+		
+		
+		////////////////////////////////
+		///////Testing area/////////////
+		////////////////////////////////
+		card newCard = new card(2,1);
+		card newCardTwo = new card(6,0);
+		card newCardThree = new card(2,2);
+		set newSet = new set(newCard, newCardTwo, newCardThree);
+		System.out.println(newSet.printSet());
 		
 	}
 }
