@@ -31,7 +31,7 @@ public class player {
 		cardsInHand.add(deck.drawCard());
 	}
 	
-	public String cardsInHand()
+	public void sayCardsInHand()
 	{
 		String returner = "Player " + this.playerNumber + " has " + cardsInHand.size() + " card(s).\n";
 		for(int i = 0; i < cardsInHand.size(); i++)
@@ -39,7 +39,7 @@ public class player {
 			returner = returner.concat("C" + i + ": ");
 			returner = returner.concat(cardsInHand.get(i).cardString() + "\n");
 		}
-		return returner;
+		System.out.println(returner);
 	}
 	
 	public int numCards()
@@ -47,8 +47,13 @@ public class player {
 		return cardsInHand.size();
 	}
 	
-	public void sayCardsInHand()
+	public set cardsInHand()//Returns a set that is of all cards in hand.
 	{
-		System.out.println(this.cardsInHand());
+		set returnerSet = new set();
+		for (card cardToReturn : cardsInHand)
+		{
+			returnerSet.addCardToSet(cardToReturn);
+		}
+		return returnerSet;
 	}
 }

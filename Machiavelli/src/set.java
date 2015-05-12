@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class set {
@@ -10,6 +11,11 @@ public class set {
 		{
 			cardsInSet.add(cardToAdd);
 		}
+	}
+	
+	public void addCardToSet(card cardToAdd)//Adds a card to the set.
+	{
+		this.cardsInSet.add(cardToAdd);
 	}
 	
 	public String printSet()
@@ -36,7 +42,6 @@ public class set {
 		return true;
 	}
 	
-	
 	public boolean checkSuitAllDiff()//Are they all of different suits?
 	{
 		int[] suitNums;
@@ -54,56 +59,70 @@ public class set {
 		return true;
 	}
 	
-	
-	public boolean checkNumsSameAndUnique()//Assuming different suits, are they the same number and unique cards?
+	public boolean checkNumsSame()//Assuming different suits, are they the same number and unique cards?
 	{
 		int num = this.cardsInSet.get(0).getValue();//Get the number of the first card in the set
-		int[] numCounts;
-		numCounts = new int[13];//Array of 13, to count the number of occurrences of each number
-		
 		for(card cardsToCheck:this.cardsInSet)//For all cards in the set we're verifying
 		{
 			if(cardsToCheck.getValue() != num)
 					return false;//They aren't all the same number
-			
-			numCounts[cardsToCheck.getValue()+1]++;//For each number, we also want to record here their number in our counter.
-		}
+			}
 		return true;
 	}
 	
-	public void sortSet()
+	public boolean checkNumsInSequence()//Checks if the numbers are a continuous sequence
 	{
-		final ArrayList<card> orderedCards = new ArrayList<card>();
-		int[] placements;
+		int[] placements; 
 		placements = new int[this.cardsInSet.size()];
 		
 		for(int i = 0; i<this.cardsInSet.size();i++)//card cardsToCheck : this.cardsInSet
 		{
 			placements[i] = this.cardsInSet.get(i).getValue();
 		}
+		Arrays.sort(placements);//I'm being seduced by bubblesort right now.
 		
-		this.cardsInSet = orderedCards;//Set the set's internal card list equal to the numerically ordered card list
+		for(int i = 1; i < placements.length; i++)
+		{
+			if(placements[i] - placements[i-1] != 1)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
-	public boolean isValid()//Set verification, how do we do? Which class?
-	{
-		if(this.checkSuitAllDiff() == true){//If they are all of a different suit
-			if(this.checkNumsSameAndUnique())//If all the numbers are the same and each card is also unique
+	public boolean isValidAllSameSuitSeqNumsSet()
+	{		
+		if(this.checkSuitSame())//If all the cards are of the same suit
+		{
+			if(this.checkNumsInSequence())//If all the cards, which are of the same suit, are of a continuous sequence of numbers
 			{
 				return true;
 			}
-			else
-				{return false;}
+			else return false;
 		}
-		
-		//this.checkSuitSame() == false && 
-		
-		final ArrayList<card> cardsToCheckAgainst = new ArrayList<card>();
-		for(card cardsToCheck : this.cardsInSet)
-		{
-			
-		}
+		else return false;
 	}
 	
-
+	public boolean isValidAllSameNumDiffSuitSet()
+	{
+		if(this.checkNumsSame())//If all the cards are of the same number
+		{
+			if(this.checkSuitAllDiff())//If all the cards are of different suits
+			{
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	
+	public boolean isValid()//
+	{
+		if(this.isValidAllSameSuitSeqNumsSet() || this.isValidAllSameSuitSeqNumsSet())
+		{
+			return true;
+		}
+		return false;
+	}
 }

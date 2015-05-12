@@ -4,74 +4,74 @@ public class game {
 	
 	private static int numberOfPlayers = 2;
 	private static ArrayList<player> playersInGame = new ArrayList<player>();
-	private static boolean gameOver = false;
+	private deck myDeck;
 	
 	public static boolean isGameOver()
 	{//////////////////////////////////
-		return false;////This is where we are.
-	}//////////////////////////////////
+		for(int i=0;i < numberOfPlayers;i++)//checks if game is over.
+		{
+			if(playersInGame.get(i).numCards() == 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void setupDeck()
+	{
+		this.myDeck.generateDeck();
+		deck.shuffleDeck();
+	}
+	public void deckSetup()
+	{
+		
+	}
 	
 	public static void main(String[] args) {
-		
-		////////////////////////////////////////
-		////Setting up initial stuff.
-		////////////////////////////////////////
-		
-		//Generating deck for game.
 		deck myDeck = new deck();
 		myDeck.generateDeck();
-		
-		//Shuffling the deck.
 		deck.shuffleDeck();
 		
-		//Generating players for game.
 		for(int i=0; i<numberOfPlayers; i++)
 		{
 			player myNewPlayer = new player(i, Integer.toString(i));
 			playersInGame.add(myNewPlayer);
 		}	
 		
-		//Drawing initial cards, we draw 13 in this game...
 		for(int i=0; i<13*numberOfPlayers; i++)
 		{
 			playersInGame.get(i%numberOfPlayers).drawCard(myDeck);
 		}
-		
-		//They all say their hands for some reason! Yay!
-		//System.out.println(playersInGame.get(0).cardsInHand());
-		//System.out.println(playersInGame.get(1).cardsInHand());
-		
-		
-		
-		///////////////////////////////////////
-		////////And now the game begins////////
-		///////////////////////////////////////
-		/*
-		while(!gameOver)//While the game is not over
+
+		while(!isGameOver())//While the game is not over
 		{
-			for(int i=0;i < numberOfPlayers;i++)//checks if game is over.
+			for(int i = 0; i<numberOfPlayers; i++)
 			{
-				if(playersInGame.get(i).numCards() == 0)
+				if(!isGameOver())//There fucking has got to be a better way than this
 				{
-					gameOver = true;
+					
 				}
 			}
 		}
-			*/
-		
-		
-		
-		
+			
 		
 		
 		////////////////////////////////
 		///////Testing area/////////////
 		////////////////////////////////
-		card newCard = new card(2,1);
-		card newCardTwo = new card(6,0);
-		card newCardThree = new card(2,2);
-		set newSet = new set(newCard, newCardTwo, newCardThree);
-		System.out.println(newSet.printSet());
+		//card newCard = new card(2,1);
+		//card newCardTwo = new card(6,1);
+		//card newCardThree = new card(3,1);
+		//set newSet = new set(newCard, newCardTwo, newCardThree);
+		//System.out.println(newSet.printSet());
+		//System.out.println(newSet.isValid());
+		
+		for(int i = 0; i < numberOfPlayers; i++)
+		{
+			System.out.println(playersInGame.get(i).cardsInHand().isValid());
+		}
+		
 		
 	}
 }
