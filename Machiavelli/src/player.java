@@ -56,4 +56,37 @@ public class player {
 		}
 		return returnerSet;
 	}
+	
+	
+	public ArrayList<set> getSetsFromHand()
+	{
+		ArrayList<set> validSetsFromHand = new ArrayList<set>();
+		
+		//For each set of cards in the hand that is valid, remove them from the hand??
+		
+		
+		return validSetsFromHand;
+	}
+	
+	public ArrayList<set> playCards(field playingField)
+	{
+		//At some point, needs to be so that it can tell if playing a full set from the hand is really the best call.
+	
+		ArrayList<set> validSetsFromHand = new ArrayList<set>();
+		
+		validSetsFromHand.addAll(this.getSetsFromHand());//If there is a full set in a hand, play it.
+		
+		
+		
+		
+		return validSetsFromHand;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

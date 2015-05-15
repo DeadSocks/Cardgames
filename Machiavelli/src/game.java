@@ -7,7 +7,7 @@ public class game {
 	private deck myDeck;
 	
 	public static boolean isGameOver()
-	{//////////////////////////////////
+	{
 		for(int i=0;i < numberOfPlayers;i++)//checks if game is over.
 		{
 			if(playersInGame.get(i).numCards() == 0)
@@ -23,6 +23,7 @@ public class game {
 		this.myDeck.generateDeck();
 		deck.shuffleDeck();
 	}
+	
 	public void deckSetup()
 	{
 		
@@ -32,6 +33,7 @@ public class game {
 		deck myDeck = new deck();
 		myDeck.generateDeck();
 		deck.shuffleDeck();
+		field myField = new field();
 		
 		for(int i=0; i<numberOfPlayers; i++)
 		{
@@ -48,9 +50,10 @@ public class game {
 		{
 			for(int i = 0; i<numberOfPlayers; i++)
 			{
-				if(!isGameOver())//There fucking has got to be a better way than this
+				if(!isGameOver())//There fucking has /got/ to be a better way than this
 				{
-					
+					playersInGame.get(i).drawCard(myDeck);
+					playersInGame.get(i).playCards(myField);
 				}
 			}
 		}
@@ -67,11 +70,9 @@ public class game {
 		//System.out.println(newSet.printSet());
 		//System.out.println(newSet.isValid());
 		
-		for(int i = 0; i < numberOfPlayers; i++)
+		/*for(int i = 0; i < numberOfPlayers; i++)
 		{
 			System.out.println(playersInGame.get(i).cardsInHand().isValid());
-		}
-		
-		
+		}*/
 	}
 }

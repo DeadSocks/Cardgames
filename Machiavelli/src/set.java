@@ -79,7 +79,7 @@ public class set {
 		{
 			placements[i] = this.cardsInSet.get(i).getValue();
 		}
-		Arrays.sort(placements);//I'm being seduced by bubblesort right now.
+		Arrays.sort(placements);
 		
 		for(int i = 1; i < placements.length; i++)
 		{
@@ -124,5 +124,10 @@ public class set {
 			return true;
 		}
 		return false;
+	}
+	
+	public ArrayList<card> cardsInSet()
+	{
+		return cardsInSet();
 	}
 }
